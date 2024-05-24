@@ -1,23 +1,35 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./../styles/App.css";
 
 const App = () => {
-  const [tabs, setTabs] = useState("Tab 1");
+  const tabsData = [
+    { title: "Tab 1", content: "This is the content for Tab 1" },
+    { title: "Tab 2", content: "This is the content for Tab 2" },
+    { title: "Tab 3", content: "This is the content for Tab 3" }
+  ];
 
-  const handleTabsClick = (tabName) => {
-    setTabs(tabName);
-  }
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+  const handleTabsClick = (index) => {
+    setActiveTabIndex(index);
+  };
 
   return (
     <div>
       <div>
-      <ul>
-        <li onClick={() => handleTabsClick("Tab 1")}>Tab 1</li>
-        <li onClick={() => handleTabsClick("Tab 2")}>Tab 2</li>
-        <li onClick={() => handleTabsClick("Tab 3")}>Tab 3</li>
-      </ul>
+        <ul>
+          {tabsData.map((tab, index) => (
+            <li
+              key={index}
+              onClick={() => handleTabsClick(index)}
+              className={activeTabIndex === index ? "active" : ""}
+            >
+              {tab.title}
+            </li>
+          ))}
+        </ul>
       </div>
-      <p>This is the content for {tabs}</p>
+      <p>{tabsData[activeTabIndex].content}</p>
     </div>
   );
 };
