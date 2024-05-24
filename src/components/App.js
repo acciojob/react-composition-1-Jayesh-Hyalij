@@ -3,9 +3,9 @@ import "./../styles/App.css";
 
 const App = () => {
   const tabsData = [
-    { title: "Tab 1", content: "This is the content for Tab 1" },
-    { title: "Tab 2", content: "This is the content for Tab 2" },
-    { title: "Tab 3", content: "This is the content for Tab 3" }
+    { title: "Tab 1", content: "This is the content for Tab 1." },
+    { title: "Tab 2", content: "This is the content for Tab 2." },
+    { title: "Tab 3", content: "This is the content for Tab 3." }
   ];
 
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -23,13 +23,14 @@ const App = () => {
               key={index}
               onClick={() => handleTabsClick(index)}
               className={activeTabIndex === index ? "active" : ""}
+              data-testid={`tab-${index}`}
             >
               {tab.title}
             </li>
           ))}
         </ul>
       </div>
-      <p>{tabsData[activeTabIndex].content}</p>
+      <p data-testid="tab-content">{tabsData[activeTabIndex].content}</p>
     </div>
   );
 };
