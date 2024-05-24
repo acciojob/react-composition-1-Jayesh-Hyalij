@@ -1,1 +1,15 @@
-{}
+describe('Tabs Component', () => {
+  beforeEach(() => {
+    cy.visit('/');
+  });
+
+  it('should render tabs with titles and contents', () => {
+    cy.get('[data-testid="tab-0"]').should('contain', 'Tab 1');
+    cy.get('[data-testid="tab-content"]').should('contain', 'This is the content for Tab 1.');
+  });
+
+  it('should switch active tab on click', () => {
+    cy.get('[data-testid="tab-1"]').click();
+    cy.get('[data-testid="tab-content"]').should('contain', 'This is the content for Tab 2.');
+  });
+});
